@@ -1,4 +1,4 @@
-package com.example.emi_movies.repo;
+package com.example.emi_movies.repository;
 
 import com.example.emi_movies.model.Commentaire;
 import org.springframework.data.jpa.repository.JpaRepository;
