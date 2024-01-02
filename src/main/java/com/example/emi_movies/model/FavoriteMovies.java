@@ -8,16 +8,14 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"movieId"})}
-)
+
 public class FavoriteMovies {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique = true)
+
     private Long movieId;
 
-    // Constructors, getters, and setters
+    private String email;
 }

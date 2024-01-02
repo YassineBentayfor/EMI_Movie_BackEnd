@@ -12,4 +12,8 @@ import java.util.Optional;
 public interface FavoriteMoviesRepository extends JpaRepository<FavoriteMovies, Long> {
 
     FavoriteMovies findByMovieId(Long movieId);
+
+    List<FavoriteMovies> findByEmail(String email);
+
+    FavoriteMovies findByEmailAndMovieId(String email, Long movieId);
 }

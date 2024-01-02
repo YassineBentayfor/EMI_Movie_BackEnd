@@ -17,6 +17,51 @@ public class FavoriteMoviesController {
         this.favoriteMoviesService = favoriteMoviesService;
     }
 
+    @GetMapping("/favorite/{email}")
+    public ResponseEntity<List<FavoriteMovies>> getFavoriteMoviesByEmail(@PathVariable("email") String email) {
+        List<FavoriteMovies> favoriteMoviesByEmail = favoriteMoviesService.getFavoriteMoviesByEmail(email);
+        return ResponseEntity.ok(favoriteMoviesByEmail);
+    }
+
+
+
+    @PostMapping("/add/{movieId}/{email}")
+    public ResponseEntity<?> addFavoriteMovieByEmail(@PathVariable("movieId") Long movieId,
+                                                     @PathVariable("email") String email) {
+        FavoriteMovies favoriteMovie = new FavoriteMovies();
+        favoriteMovie.setMovieId(movieId);
+        favoriteMovie.setEmail(email);
+
+        favoriteMoviesService.addFavoriteMovie(favoriteMovie);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/delete/{movieId}/{email}")
+    public ResponseEntity<?> deleteFavoriteMovieByEmail(@PathVariable("movieId") Long id,
+                                                        @PathVariable("email") String email) {
+        favoriteMoviesService.deleteFavoriteMovieByEmailAndMovieId(email, id);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @GetMapping("/favorite")
     public ResponseEntity<List<FavoriteMovies>> getFavoriteMovieIds() {
         List<FavoriteMovies> favoriteMovieIds = favoriteMoviesService.getFavoriteMovie();
@@ -36,4 +81,5 @@ public class FavoriteMoviesController {
         favoriteMoviesService.deleteFavoriteMovie(id);
         return ResponseEntity.ok().build();
     }
+
 }
